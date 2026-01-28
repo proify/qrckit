@@ -6,6 +6,9 @@
 
 package io.github.proify.qrckit.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class QrcData(
     val metaData: Map<String, String>,
     val lines: List<LyricLine>

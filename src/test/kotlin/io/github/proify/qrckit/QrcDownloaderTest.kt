@@ -14,8 +14,15 @@ class QrcDownloaderTest {
     fun testDownload() {
         val response: LyricResponse = QrcDownloader.downloadLyrics("269741123")
         val data: LyricData = response.lyricData
-        data.richLyricLine.forEach {
-            println(it)
+
+        data.lyricData.forEach {
+            it.lines.forEach {
+                println(it)
+            }
         }
+
+//        data.richLyricLine.forEach {
+//            println(it)
+//        }
     }
 }

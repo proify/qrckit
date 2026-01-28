@@ -4,12 +4,16 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+@file:Suppress("unused")
+
 package io.github.proify.qrckit.model
 
 import io.github.proify.qrckit.LrcParser
 import io.github.proify.qrckit.QrcParser
+import kotlinx.serialization.Serializable
 import kotlin.math.abs
 
+@Serializable
 data class LyricData(
     val lyrics: String? = null,
     val translation: String? = null,
@@ -20,9 +24,9 @@ data class LyricData(
     val romaData: LrcData by lazy { LrcParser.parseLrc(roma) }
 
     val richLyricLine: List<RichLyricLine> by lazy {
-
-        lyricData.first().lines.map { line ->
-            val matchedTrans = translationData.lines.firstOrNull { abs(it.start - line.start) < 100 }
+        lyricData.firstOrNull()?.lines?.map { line ->
+            val matchedTrans =
+                translationData.lines.firstOrNull { abs(it.start - line.start) < 100 }
             val matchedRoma = romaData.lines.firstOrNull { abs(it.start - line.start) < 100 }
 
             RichLyricLine(
@@ -34,6 +38,6 @@ data class LyricData(
                 roma = matchedRoma?.text,
                 words = line.words
             )
-        }
+        } ?: emptyList()
     }
 }

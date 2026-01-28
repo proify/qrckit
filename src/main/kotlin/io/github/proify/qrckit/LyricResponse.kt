@@ -13,6 +13,7 @@ import io.github.proify.qrckit.model.LyricData
 import java.util.regex.Pattern
 
 data class LyricResponse(
+    val id : String,
     val raw: String
 ) {
     val lyricData: LyricData by lazy {

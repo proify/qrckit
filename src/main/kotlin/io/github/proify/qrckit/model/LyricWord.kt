@@ -6,6 +6,9 @@
 
 package io.github.proify.qrckit.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class LyricWord(
     override val start: Long = 0,
     override val end: Long,

@@ -44,6 +44,6 @@ object QrcDownloader {
         conn.outputStream.use { it.write(postData.toByteArray()) }
 
         val raw = conn.inputStream.bufferedReader().use { it.readText() }
-        return LyricResponse(raw)
+        return LyricResponse(musicId, raw)
     }
 }
